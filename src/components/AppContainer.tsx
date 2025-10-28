@@ -16,6 +16,21 @@ export const AppContainer = () => {
     { id: 'account' as Page, name: 'Аккаунт' }
   ];
 
+  const getPageTitle = () => {
+    switch (currentPage) {
+      case 'configs':
+        return 'Конфиги';
+      case 'orders':
+        return 'Заказы';
+      case 'promo':
+        return 'Промо';
+      case 'account':
+        return 'Аккаунт';
+      default:
+        return 'Страница';
+    }
+  };
+
   const renderPage = () => {
     switch (currentPage) {
       case 'configs':
@@ -46,6 +61,7 @@ export const AppContainer = () => {
       </nav>
       
       <main className="main-content">
+        <h1 className="page-title">{getPageTitle()}</h1>
         {renderPage()}
       </main>
     </div>
