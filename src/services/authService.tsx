@@ -1,13 +1,14 @@
 import type { LoginCredentials, LoginResponse } from '../types/auth';
 import type { User } from '../types/auth';
 import { tokenStorage } from './tokenStorageService';
+import { API_CONFIG } from '../config/api';
 
-const API_BASE_URL = 'http://localhost:8888/api/v1';
+const AUTH_URL = API_CONFIG.AUTH_URL;
 
 export class AuthService {
   static async login(credentials: LoginCredentials): Promise<LoginResponse> {
     console.log('Trying to login:', credentials.login);
-    const response = await fetch(`${API_BASE_URL}/auth/login`, {
+    const response = await fetch(`${AUTH_URL}/auth/login`, {
       method: 'POST',
       headers: { 
         'Content-Type': 'application/json' 
@@ -32,7 +33,7 @@ export class AuthService {
     if (!access) {
       throw new Error('No access token found in local storage');
     }
-    const response = await fetch(`${API_BASE_URL}/me/profile`, {
+    const response = await fetch(`${AUTH_URL}/me/profile`, {
       method: 'GET',
       headers: { 
         'Content-Type': 'application/json',
@@ -59,7 +60,7 @@ export class AuthService {
   static async logout(): Promise<boolean> {
     const access = tokenStorage.getAccessToken();
     if (access) {
-      const response = await fetch(`${API_BASE_URL}/auth/logout`, {
+      const response = await fetch(`${AUTH_URL}/auth/logout`, {
         method: 'POST',
         headers: { 
           'Content-Type': 'application/json',
