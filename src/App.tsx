@@ -4,10 +4,11 @@ import { useAuth } from './hooks/useAuth';
 import './App.css';
 
 function App() {
-  const { isLoading, user, authState, loginResponse, handleLogin, handleLogout } = useAuth();
+  const { isLoading, authState, handleLogin, handleLogout } = useAuth();
+
   if (authState.isAuthenticated) {
     return (
-      <div>
+      <div className="app-container">
         <h1>Добро пожаловать!</h1>
         <button onClick={handleLogout}>Выйти</button>
       </div>
@@ -15,7 +16,7 @@ function App() {
   }
 
   return (
-    <div>
+    <div className="auth-container">
       <LoginForm onLogin={handleLogin} isLoading={isLoading} />
     </div>
   );

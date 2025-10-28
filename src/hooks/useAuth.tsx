@@ -49,9 +49,7 @@ export const useAuth = () => {
 
   return {
     isLoading,
-    user,
     authState,
-    loginResponse,
     handleLogin,
     handleLogout
   };
