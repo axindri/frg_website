@@ -9,8 +9,8 @@ function App() {
   if (authState.isAuthenticated) {
     return (
       <div className="app-container">
-        <h1>Добро пожаловать!</h1>
-        <button onClick={handleLogout}>Выйти</button>
+        <h1 className="app-title">Добро пожаловать!</h1>
+        <button className="app-button" onClick={handleLogout}>Выйти</button>
       </div>
     );
   }

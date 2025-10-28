@@ -20,31 +20,35 @@ export const LoginForm = ({ onLogin, isLoading = false }: LoginFormProps) => {
   };
 
   return (
-    <div>
+    <div className="login-form">
       <form onSubmit={handleSubmit}>
         <h2>Вход</h2>
         
-        <div>
+        <div className="form-group">
           <label>Логин:</label>
           <input
             type="text"
+            className="form-input"
             value={login}
             onChange={(e) => setLogin(e.target.value)}
             disabled={isLoading}
+            placeholder="Введите логин"
           />
         </div>
 
-        <div>
+        <div className="form-group">
           <label>Пароль:</label>
           <input
             type="password"
+            className="form-input"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             disabled={isLoading}
+            placeholder="Введите пароль"
           />
         </div>
 
-        <button type="submit" disabled={isLoading}>
+        <button type="submit" className="login-button" disabled={isLoading}>
           {isLoading ? 'Вход...' : 'Войти'}
         </button>
       </form>
