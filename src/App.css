@@ -1,5 +1,4 @@
 :root {
-  /* Main accent color - can be changed in settings */
   --accent-color: #8b5cf6;
   --accent-color-hover: #7c3aed;
   --accent-color-light: #a78bfa;
@@ -16,67 +15,79 @@
   padding: 0;
   text-align: center;
   box-sizing: border-box;
-  background: #111111;
-  border-radius: 24px;
-  border: 1px solid var(--accent-color);
-  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8), 0 0 0 1px var(--accent-glow);
   overflow: hidden;
-}
-
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
-}
-
-/* App container styles */
-.app-container {
-  width: 100%;
-  height: 100%;
-  padding: 2rem;
-  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background: #111111;
+}
+
+.app-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
   color: #ffffff;
+}
+
+.navigation {
+  display: flex;
+  padding: 10px 0px 10px 0px;
+  gap: 6px;
+  width: 100%;
+}
+
+.nav-button {
+  flex: 1;
+  padding: 10px 4px 10px 4px;
+  border: 1px solid #333333;
+  background: #1a1a1a;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  color: #a1a1aa;
+  transition: all 0.2s ease;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  outline: none;
+}
+
+.nav-button:hover {
+  border: 1px solid #4d4d4d;
+  outline: none;
+}
+
+.nav-button.active {
+  border: 1px solid var(--accent-color);
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05), 0 0 0 1px var(--accent-glow);
+  outline: none;
+}
+
+.main-content {
+  flex: 1;
+  padding: 24px;
+  background-color: #111111;
+  border: 1px solid #333333;
+  border-radius: 12px;
+  overflow-y: auto;
+}
+
+.main-content div {
+  font-size: 18px;
+  color: #a1a1aa;
+  text-align: center;
+  margin-top: 50px;
+  border: 1px solid #333333;
+  border-radius: 12px;
 }
 
 .auth-container {
   width: 100%;
-  height: 100%;
-  padding: 2rem;
+  /* height: 100%; */
+  min-height: auto;
+  /* padding: 2rem; */
+  margin-top: 10px;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -84,9 +95,10 @@
   align-items: center;
   background: #111111;
   color: #ffffff;
+  border-radius: 12px;
+  border: 1px solid #333333;
 }
 
-/* Next.js style components */
 .app-title {
   font-size: 2rem;
   font-weight: 700;
@@ -126,7 +138,8 @@
 /* Login form styles */
 .login-form {
   width: 100%;
-  max-width: 320px;
+  padding: 0px 20px 0px 20px;
+  /* max-width: 320px; */
 }
 
 .login-form h2 {
@@ -191,6 +204,7 @@
   transition: all 0.2s ease;
   box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05), 0 0 0 1px var(--accent-glow);
   margin-top: 1rem;
+  margin-bottom: 40px;
 }
 
 .login-button:hover:not(:disabled) {
