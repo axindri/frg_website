@@ -1,35 +1,77 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from 'react';
+import { LoginForm } from './components/auth/LoginForm';
+import type { User, AuthState, LoginResponse, LoginCredentials } from './types/auth';
+import { AuthService } from './services/authService'; 
+import './App.css';
+
+const defaultAuthState: AuthState = {
+  user: null,
+  isAuthenticated: false,
+  error: null
+};
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [user, setUser] = useState<User | null>(null);
+  const [authState, setAuthState] = useState<AuthState>(defaultAuthState);
+  const [loginResponse, setLoginResponse] = useState<LoginResponse | null>(null);
+
+  const handleLogin = async (login: string, password: string) => {
+    setIsLoading(true);
+    
+    try {
+      const credentials: LoginCredentials = { 
+        login: login, 
+        password 
+      };
+      console.log('Trying to login:', login);
+    
+      const loginResponseData: LoginResponse = await AuthService.login(credentials);
+      const currentUser: User = await AuthService.getProfile();
+
+      console.log('Login response:', loginResponseData);      
+      console.log('Successfully logged in!', currentUser);
+
+      setUser(currentUser);
+      setAuthState({
+        user: currentUser,
+        isAuthenticated: true,
+        error: null
+      });
+
+    } catch (error) {
+      console.error('Login error:', error);
+      setAuthState({
+        user: null,
+        isAuthenticated: false,
+        error: 'Invalid credentials'
+      });
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleLogout = async () => {
+    await AuthService.logout();
+    setAuthState(defaultAuthState);
+    setUser(null);
+    setLoginResponse(null);
+  };
+
+  if (authState.isAuthenticated) {
+    return (
+      <div>
+        <h1>Добро пожаловать!</h1>
+        <button onClick={handleLogout}>Выйти</button>
+      </div>
+    );
+  }
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <div>
+      <LoginForm onLogin={handleLogin} isLoading={isLoading} />
+    </div>
+  );
 }
 
-export default App
+export default App;
