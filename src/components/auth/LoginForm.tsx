@@ -1,7 +1,8 @@
 import { useState } from 'react';
+import type { LoginCredentials } from '../../types/auth';
 
 interface LoginFormProps {
-  onLogin: (username: string, password: string) => void;
+  onLogin: (credentials: LoginCredentials) => void;
   isLoading?: boolean;
 }
 
@@ -11,7 +12,11 @@ export const LoginForm = ({ onLogin, isLoading = false }: LoginFormProps) => {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    onLogin(login, password);
+    const credentials: LoginCredentials = {
+      login: login,
+      password: password
+    };
+    onLogin(credentials);
   };
 
   return (

@@ -6,6 +6,7 @@ const API_BASE_URL = 'http://localhost:8888/api/v1';
 
 export class AuthService {
   static async login(credentials: LoginCredentials): Promise<LoginResponse> {
+    console.log('Trying to login:', credentials.login);
     const response = await fetch(`${API_BASE_URL}/auth/login`, {
       method: 'POST',
       headers: { 
@@ -20,7 +21,9 @@ export class AuthService {
     }
     
     const loginResponseData = await response.json();
-    tokenStorage.setTokens(loginResponseData.access, loginResponseData.refresh);
+    console.log('Login response:', loginResponseData);
+
+    tokenStorage.setTokens(loginResponseData);
     return loginResponseData;
   }
 
@@ -41,12 +44,15 @@ export class AuthService {
       throw new Error(`Get profile failed: ${response.status}`);
     }
     const responseData = await response.json();
+    console.log('Profile response:', responseData);
+
     const user: User = {
       id: responseData.user.id,
       login: responseData.user.login,
       email: responseData.profile.email,
       role: responseData.role.name
     };
+    console.log('User:', user);
     return user;
   }
 
