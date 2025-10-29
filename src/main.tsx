@@ -4,7 +4,7 @@ import { BrowserRouter } from 'react-router-dom'
 import './styles/index.css'
 import App from './App.tsx'
 
-const basename = import.meta.env.PROD ? '/frg_website' : '';
+const basename = window.location.hostname === 'axindri.github.io' ? '/frg_website' : '';
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
