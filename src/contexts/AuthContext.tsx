@@ -1,12 +1,9 @@
 import { createContext, useContext, type ReactNode } from 'react';
-import { useAuth } from '../hooks/useAuth';
+import { useAuth, type AuthStateWithProfile } from '../hooks/useAuth';
 import type { LoginCredentials } from '../types/auth';
 
 type AuthContextType = {
-  authState: {
-    isAuthenticated: boolean;
-    error: string | null;
-  };
+  authState: AuthStateWithProfile;
   isLoading: boolean;
   isInitialized: boolean;
   handleLogin: (credentials: LoginCredentials) => Promise<void>;

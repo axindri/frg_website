@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import type { LoginCredentials, AuthState } from '../types/auth';
+import type { LoginCredentials, AuthState, AuthProfileResponse } from '../types/auth';
 import { AuthService } from '../services/authService';
 import { tokenStorage } from '../services/tokenStorageService';
 
@@ -9,9 +9,13 @@ const defaultAuthState: AuthState = {
     error: null
   };
 
+export interface AuthStateWithProfile extends AuthState {
+  profile?: AuthProfileResponse;
+}
+
 export const useAuth = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [authState, setAuthState] = useState<AuthState>(defaultAuthState);
+  const [authState, setAuthState] = useState<AuthStateWithProfile>(defaultAuthState);
   const [isInitialized, setIsInitialized] = useState<boolean>(false);
   const isInitializedRef = useRef(false);
   const navigate = useNavigate();
@@ -26,11 +30,12 @@ export const useAuth = () => {
       const token = tokenStorage.getAccessToken();
       if (token) {
         try {
-          await AuthService.getProfile();
+          const profile = await AuthService.getProfile();
 
           setAuthState({
             isAuthenticated: true,
-            error: null
+            error: null,
+            profile
           });
 
         } catch (error) {
@@ -50,11 +55,12 @@ export const useAuth = () => {
     
     try {
       await AuthService.login(credentials);
-      await AuthService.getProfile();
+      const profile = await AuthService.getProfile();
 
       setAuthState({
         isAuthenticated: true,
-        error: null
+        error: null,
+        profile
       });
       
       navigate('/');

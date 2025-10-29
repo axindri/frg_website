@@ -19,6 +19,12 @@
     gap: 0.5rem;
 }
 
+.form:hover {
+    box-shadow: 0 0 0.125rem 0 var(--color-container-glow);
+    transform: translateY(-0.125rem);
+    transition: all 0.3s ease-in-out;
+}
+
 
 .title {
     font-size: 1.5rem;
