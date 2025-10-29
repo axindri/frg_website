@@ -1,3 +1,5 @@
+import { LoginWidget } from '../components/Widgets/LoginWidget';
+
 export const LoginPage = () => {
-  return <div>LoginPage</div>;
+  return <LoginWidget />;
 };

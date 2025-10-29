@@ -17,6 +17,11 @@
   --color-accent-glow: #007bff;
   --color-accent-glow-strong: #0056b3;
   --color-border: #3f3f3f;
+
+  /* Buttons */
+  --color-button-border: #007bff;
+  --color-button-disabled: #a6a6a6;
+
   
   /* Borders */
   --border-radius: 0.5rem;

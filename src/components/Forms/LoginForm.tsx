@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import type { LoginCredentials } from '../../types/auth';
-
+import styles from './LoginForm.module.css';
+import { DefaultButton } from '../Buttons/DefaultButton';
+import { DefaultInput } from '../Inputs/DefaultInput';
 interface LoginFormProps {
   onLogin: (credentials: LoginCredentials) => void;
   isLoading?: boolean;
@@ -20,37 +22,32 @@ export const LoginForm = ({ onLogin, isLoading = false }: LoginFormProps) => {
   };
 
   return (
-    <div className="login-form">
+    <div className={styles.container}>
       <form onSubmit={handleSubmit}>
-        <h2>Вход</h2>
-        
-        <div className="form-group">
-          <label>Логин:</label>
-          <input
+        <div className={styles.form}>
+          <div className={styles.title}>Вход</div>
+          <DefaultInput
+            label="Логин"
             type="text"
-            className="form-input"
             value={login}
             onChange={(e) => setLogin(e.target.value)}
             disabled={isLoading}
-            placeholder="Введите логин"
           />
-        </div>
 
-        <div className="form-group">
-          <label>Пароль:</label>
-          <input
+
+          <DefaultInput
+            label="Пароль"
             type="password"
-            className="form-input"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             disabled={isLoading}
-            placeholder="Введите пароль"
           />
+          <div className={styles.buttonContainer}>
+            <DefaultButton type="submit" disabled={isLoading}>
+              {isLoading ? 'Вход...' : 'Войти'}
+            </DefaultButton>
+          </div>
         </div>
-
-        <button type="submit" className="login-button" disabled={isLoading}>
-          {isLoading ? 'Вход...' : 'Войти'}
-        </button>
       </form>
     </div>
   );
