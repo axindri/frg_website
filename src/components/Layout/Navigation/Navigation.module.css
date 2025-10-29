@@ -12,9 +12,17 @@
     margin: 0 auto;
     display: flex;
     flex-direction: row;
+    justify-content: space-between;
     overflow-x: auto;
+    gap: 0.5rem;
 }
 
 .nav::-webkit-scrollbar {
     display: none;
+}
+
+@media (max-width: 480px) {
+    .nav {
+        justify-content: flex-start;
+    }
 }
