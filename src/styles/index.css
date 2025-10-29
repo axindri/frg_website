@@ -1,0 +1,46 @@
+@import './normalize.css';
+@import url('https://fonts.googleapis.com/css2?family=Sansation:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gidole&family=Sansation:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+:root {
+  /* Colors */
+  --color-fg: #e5e7eb;
+  --color-bg: #000000;
+  --color-content-bg: #1a1a1a;
+  --color-container-bg: #292929;
+  --color-accent: #007bff;
+  --color-accent-hover: #0056b3;
+  --color-accent-light: #007bff;
+  --color-accent-dark: #0056b3;
+  --color-accent-glow: #007bff;
+  --color-accent-glow-strong: #0056b3;
+  --color-border: #3f3f3f;
+
+  /* Buttons */
+  --color-button-border: #007bff;
+  --color-button-disabled: #a6a6a6;
+
+  
+  /* Borders */
+  --border-radius: 0.5rem;
+
+  /* Media */
+  --media-mobile: 480px;
+}
+
+html, body, #root {
+  height: 100%;
+  min-width: 300px;
+}
+
+body {
+  font-family: 'Gidole', sans-serif;
+  background-color: var(--color-bg);
+  color: var(--color-fg);
+}
+
+
