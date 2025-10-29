@@ -1,11 +1,19 @@
-@import url('./styles/normalize.css');
-
 *, *::before, *::after {
   box-sizing: border-box;
 }
 
 :root {
-
+  /* Colors */
+  --color-fg: #e5e7eb;
+  --color-accent: #007bff;
+  --color-accent-hover: #0056b3;
+  --color-accent-light: #007bff;
+  --color-accent-dark: #0056b3;
+  --color-accent-glow: #007bff;
+  --color-accent-glow-strong: #0056b3;
+  
+  /* Borders */
+  --border-radius: 0.5rem;
 }
 
 html, body, #root {

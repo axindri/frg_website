@@ -1,4 +1,5 @@
-import { Link, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation} from 'react-router-dom';
+import { NavButton } from '../Buttons/NavButton';
 interface NavigationProps {
   navItems: {
     path: string;
@@ -7,16 +8,13 @@ interface NavigationProps {
 }
 export const Navigation = ({ navItems }: NavigationProps) => {
   const location = useLocation();
+  const navigate = useNavigate();
   return (
     <nav>
       {navItems.map((item) => (
-        <Link
-          key={item.path}
-          to={item.path}
-          className={location.pathname === item.path ? 'active' : ''}
-          >
+        <NavButton key={item.path} onClick={() => { navigate(item.path); }} isActive={location.pathname === item.path}>
           {item.label}
-        </Link>
+        </NavButton>
       ))}
     </nav>
   );
