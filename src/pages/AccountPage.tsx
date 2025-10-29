@@ -1,3 +1,3 @@
 export const AccountPage = () => {
-  return <div>Страница Аккаунт - заглушка</div>;
+  return <div>AccountPage</div>;
 };
