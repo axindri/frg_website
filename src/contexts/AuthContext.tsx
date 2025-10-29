@@ -4,7 +4,6 @@ import type { LoginCredentials } from '../types/auth';
 
 type AuthContextType = {
   authState: {
-    user: any;
     isAuthenticated: boolean;
     error: string | null;
   };

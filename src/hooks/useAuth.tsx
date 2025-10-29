@@ -1,12 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import type { User, LoginCredentials, AuthState } from '../types/auth';
+import type { LoginCredentials, AuthState } from '../types/auth';
 import { AuthService } from '../services/authService';
 import { tokenStorage } from '../services/tokenStorageService';
 import toast from 'react-hot-toast';
 
 const defaultAuthState: AuthState = {
-    user: null,
     isAuthenticated: false,
     error: null
   };
@@ -15,26 +14,34 @@ export const useAuth = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [authState, setAuthState] = useState<AuthState>(defaultAuthState);
   const [isInitialized, setIsInitialized] = useState<boolean>(false);
+  const isInitializedRef = useRef(false);
   const navigate = useNavigate();
 
-  // Check for existing token on component mount
   useEffect(() => {
+    if (isInitializedRef.current) return;
+    isInitializedRef.current = true;
+
     const initializeAuth = async () => {
+      console.log('Initializing authentication');
+      
       const token = tokenStorage.getAccessToken();
       if (token) {
         try {
-          const user = await AuthService.getProfile();
+          await AuthService.getProfile();
+
           setAuthState({
-            user,
             isAuthenticated: true,
             error: null
           });
+
         } catch (error) {
-          // Token is invalid, clear it
+          toast.error('Authentication failed');
+          console.error('Authentication error at initialization:', error);
           tokenStorage.clearTokens();
           setAuthState(defaultAuthState);
         }
       }
+      
       setIsInitialized(true);
     };
 
@@ -46,10 +53,9 @@ export const useAuth = () => {
     
     try {
       await AuthService.login(credentials);
-      const currentUser: User = await AuthService.getProfile();
+      await AuthService.getProfile();
 
       setAuthState({
-        user: currentUser,
         isAuthenticated: true,
         error: null
       });
@@ -58,10 +64,9 @@ export const useAuth = () => {
       toast.success('Successfully logged in!');
 
     } catch (error) {
-      console.error('Login error:', error);
       toast.error('Login failed');
+      console.error('Login error:', error);
       setAuthState({
-        user: null,
         isAuthenticated: false,
         error: 'Invalid credentials'
       });

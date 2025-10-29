@@ -1,5 +1,4 @@
-import type { LoginCredentials, LoginResponse } from '../types/auth';
-import type { User } from '../types/auth';
+import type { AuthProfileResponse, LoginCredentials, LoginResponse } from '../types/auth';
 import { tokenStorage } from './tokenStorageService';
 import { API_CONFIG } from '../config/api';
 
@@ -28,7 +27,7 @@ export class AuthService {
     return loginResponseData;
   }
 
-  static async getProfile(): Promise<User> {
+  static async getProfile(): Promise<AuthProfileResponse> {
     const access = tokenStorage.getAccessToken();
     if (!access) {
       throw new Error('No access token found in local storage');
@@ -46,15 +45,7 @@ export class AuthService {
     }
     const responseData = await response.json();
     console.log('Profile response:', responseData);
-
-    const user: User = {
-      id: responseData.user.id,
-      login: responseData.user.login,
-      email: responseData.profile.email,
-      role: responseData.role.name
-    };
-    console.log('User:', user);
-    return user;
+    return responseData;
   }
 
   static async logout(): Promise<boolean> {
