@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import type { User, LoginCredentials, AuthState } from '../types/auth';
 import { AuthService } from '../services/authService';
 import { tokenStorage } from '../services/tokenStorageService';
+import toast from 'react-hot-toast';
 
 const defaultAuthState: AuthState = {
     user: null,
@@ -53,11 +54,12 @@ export const useAuth = () => {
         error: null
       });
       
-      // Redirect to home page after successful login
       navigate('/');
+      toast.success('Successfully logged in!');
 
     } catch (error) {
       console.error('Login error:', error);
+      toast.error('Login failed');
       setAuthState({
         user: null,
         isAuthenticated: false,
@@ -73,6 +75,7 @@ export const useAuth = () => {
   const handleLogout = async () => {
     await AuthService.logout();
     setAuthState(defaultAuthState);
+    toast.success('Successfully logged out!');
   };
 
   return {
