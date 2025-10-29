@@ -5,7 +5,10 @@ import styles from './Header.module.css';
 
 export const Header = () => {
   const isAuthenticated = !!tokenStorage.getAccessToken();
-  const navItems = isAuthenticated ? privateNavItems : publicNavItems;
+  const homeItem = publicNavItems.find((item) => item.path === '/');
+  const navItems = isAuthenticated
+    ? (homeItem ? [homeItem, ...privateNavItems] : privateNavItems)
+    : publicNavItems;
 
   return (
     <header className={styles.header}>

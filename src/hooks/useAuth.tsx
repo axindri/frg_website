@@ -16,7 +16,6 @@ export const useAuth = () => {
     setIsLoading(true);
     
     try {
-    
       await AuthService.login(credentials);
       const currentUser: User = await AuthService.getProfile();
 
@@ -25,6 +24,7 @@ export const useAuth = () => {
         isAuthenticated: true,
         error: null
       });
+
     } catch (error) {
       console.error('Login error:', error);
       setAuthState({
@@ -32,8 +32,10 @@ export const useAuth = () => {
         isAuthenticated: false,
         error: 'Invalid credentials'
       });
+
     } finally {
       setIsLoading(false);
+
     }
   };
 
