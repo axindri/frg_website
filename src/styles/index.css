@@ -1,5 +1,6 @@
 @import './normalize.css';
 @import url('https://fonts.googleapis.com/css2?family=Sansation:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Gidole&family=Sansation:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap');
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -37,7 +38,7 @@ html, body, #root {
 }
 
 body {
-  font-family: 'Sansation', sans-serif;
+  font-family: 'Gidole', sans-serif;
   background-color: var(--color-bg);
   color: var(--color-fg);
 }
