@@ -1,6 +1,5 @@
 import type { ReactNode } from 'react';
-import { Navigation } from './Navigation';
-import { navItems } from '../../constants/navItems';
+import { Header } from './Header';
 
 interface LayoutProps {
   children: ReactNode;
@@ -9,12 +8,10 @@ interface LayoutProps {
 export const Layout = ({ children }: LayoutProps) => {
   return (
     <div className="layout">
-      <header className="navigation">
-        <Navigation navItems={navItems} />
-      </header>
-      <main className="content">
-        {children}
-      </main>
+        <Header />
+        <main className="content">
+            {children}
+        </main>
     </div>
   );
 };
