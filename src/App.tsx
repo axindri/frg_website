@@ -1,20 +1,36 @@
-
-import { LoginForm } from './components/auth/LoginForm';
-import { AppContainer } from './components/AppContainer';
-import { useAuth } from './hooks/useAuth';
 import './App.css';
+import { Layout } from './components/Layout';
+import { Routes, Route } from 'react-router-dom'; 
+import { HomePage } from './pages/HomePage';
+import { AccountPage } from './pages/AccountPage';
+import { ConfigsPage } from './pages/ConfigsPage';
+import { OrdersPage } from './pages/OrdersPage';
+import { PromoPage } from './pages/PromoPage';
+import { NotFoundPage } from './pages/NotFoundPage';
+import { LoginPage } from './pages/LoginPage';
 
 function App() {
-  const { isLoading, authState, handleLogin, handleLogout } = useAuth();
+  const navItems = [
+    { path: '/', label: 'Главная' },
+    { path: '/login', label: 'Вход' },
+    { path: '/account', label: 'Аккаунт' },
+    { path: '/configs', label: 'Конфиги' },
+    { path: '/orders', label: 'Заказы' },
+    { path: '/promo', label: 'Промо' },
+  ];
 
-  if (authState.isAuthenticated) {
-    return <AppContainer />;
-  }
-
-  return (
-    <div className="auth-container">
-      <LoginForm onLogin={handleLogin} isLoading={isLoading} />
-    </div>
+return (
+<Layout navItems={navItems}>
+  <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/account" element={<AccountPage />} />
+        <Route path="/configs" element={<ConfigsPage />} />
+        <Route path="/orders" element={<OrdersPage />} />
+        <Route path="/promo" element={<PromoPage />} />
+        <Route path="*" element={<NotFoundPage />} />
+  </Routes>
+  </Layout>
   );
 }
 
