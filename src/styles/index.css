@@ -9,7 +9,8 @@
   /* Colors */
   --color-fg: #e5e7eb;
   --color-bg: #000000;
-  --color-container-bg: #1a1a1a;
+  --color-content-bg: #1a1a1a;
+  --color-container-bg: #292929;
   --color-accent: #007bff;
   --color-accent-hover: #0056b3;
   --color-accent-light: #007bff;

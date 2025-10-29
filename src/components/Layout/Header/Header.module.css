@@ -7,7 +7,7 @@
 .logo {
     border-bottom: 1px solid var(--color-border);
     padding: 0.5rem 1rem;
-    background-color: var(--color-container-bg);
+    background-color: var(--color-content-bg);
 }
 
 .title {
