@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import type { LoginCredentials, AuthState } from '../types/auth';
 import { AuthService } from '../services/authService';
 import { tokenStorage } from '../services/tokenStorageService';
-import toast from 'react-hot-toast';
 
 const defaultAuthState: AuthState = {
     isAuthenticated: false,
@@ -35,9 +34,7 @@ export const useAuth = () => {
           });
 
         } catch (error) {
-          toast.error('Authentication failed');
           console.error('Authentication error at initialization:', error);
-          tokenStorage.clearTokens();
           setAuthState(defaultAuthState);
         }
       }
@@ -61,11 +58,8 @@ export const useAuth = () => {
       });
       
       navigate('/');
-      toast.success('Successfully logged in!');
 
     } catch (error) {
-      toast.error('Login failed');
-      console.error('Login error:', error);
       setAuthState({
         isAuthenticated: false,
         error: 'Invalid credentials'
@@ -80,7 +74,6 @@ export const useAuth = () => {
   const handleLogout = async () => {
     await AuthService.logout();
     setAuthState(defaultAuthState);
-    toast.success('Successfully logged out!');
   };
 
   return {

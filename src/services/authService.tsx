@@ -1,6 +1,7 @@
 import type { AuthProfileResponse, LoginCredentials, LoginResponse } from '../types/auth';
 import { tokenStorage } from './tokenStorageService';
 import { API_CONFIG } from '../config/api';
+import toast from 'react-hot-toast';
 
 const AUTH_URL = API_CONFIG.AUTH_URL;
 
@@ -17,7 +18,16 @@ export class AuthService {
     
     if (!response.ok) {
       tokenStorage.clearTokens();
-      throw new Error(`Login failed: ${response.status}`);
+      if (response.status === 401) {
+        toast.error('Invalid credentials');
+      }
+      else if (response.status === 429) {
+        toast.error('Too many requests, please try again later');
+      }
+      else {
+        toast.error(`Get profile failed with code: ${response.status}`);
+      }
+      throw new Error(`Get profile failed: ${response.status}`);
     }
     
     const loginResponseData = await response.json();
@@ -41,8 +51,19 @@ export class AuthService {
     });
 
     if (!response.ok) {
+      tokenStorage.clearTokens();
+      if (response.status === 401) {
+        toast.error('Unauthorized');
+      }
+      else if (response.status === 429) {
+        toast.error('Too many requests, please try again later');
+      }
+      else {
+        toast.error(`Get profile failed with code: ${response.status}`);
+      }
       throw new Error(`Get profile failed: ${response.status}`);
     }
+
     const responseData = await response.json();
     console.log('Profile response:', responseData);
     return responseData;
