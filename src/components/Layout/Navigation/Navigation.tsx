@@ -12,6 +12,7 @@ export const Navigation = ({ navItems }: NavigationProps) => {
   const location = useLocation();
   const navigate = useNavigate();
   return (
+    <div className={styles.container}>
     <nav className={styles.nav}>
       {navItems.map((item) => (
         <NavButton key={item.path} onClick={() => { navigate(item.path); }} isActive={location.pathname === item.path}>
@@ -19,5 +20,6 @@ export const Navigation = ({ navItems }: NavigationProps) => {
         </NavButton>
       ))}
     </nav>
+    </div>
   );
 };

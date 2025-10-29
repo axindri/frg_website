@@ -17,10 +17,14 @@
   
   /* Borders */
   --border-radius: 0.5rem;
+
+  /* Media */
+  --media-mobile: 480px;
 }
 
 html, body, #root {
   height: 100%;
+  min-width: 300px;
 }
 
 body {
