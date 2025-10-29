@@ -1,5 +1,7 @@
 import type { ReactNode } from 'react';
 import { Header } from './Header/Header';
+import { Content } from './Content/Content';
+import styles from './Layout.module.css';
 
 interface LayoutProps {
   children: ReactNode;
@@ -7,10 +9,12 @@ interface LayoutProps {
 
 export const Layout = ({ children }: LayoutProps) => {
   return (
-    <div className="layout">
+    <div className={styles.layout}>
         <Header />
-        <main className="content">
+        <main className={styles.content}>
+          <Content>
             {children}
+          </Content>
         </main>
     </div>
   );

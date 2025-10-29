@@ -5,12 +5,15 @@
 :root {
   /* Colors */
   --color-fg: #e5e7eb;
+  --color-bg: #000000;
+  --color-container-bg: #1a1a1a;
   --color-accent: #007bff;
   --color-accent-hover: #0056b3;
   --color-accent-light: #007bff;
   --color-accent-dark: #0056b3;
   --color-accent-glow: #007bff;
   --color-accent-glow-strong: #0056b3;
+  --color-border: #3f3f3f;
   
   /* Borders */
   --border-radius: 0.5rem;
@@ -24,8 +27,8 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
     Ubuntu, Cantarell, 'Fira Sans', 'Droid Sans', 'Helvetica Neue', Arial,
     'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', sans-serif;
-  background-color: var(--color-bg, #0b0c10);
-  color: var(--color-fg, #e5e7eb);
+  background-color: var(--color-bg);
+  color: var(--color-fg);
 }
 
 

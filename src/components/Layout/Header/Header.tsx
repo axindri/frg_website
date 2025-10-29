@@ -1,13 +1,14 @@
 import { Navigation } from '../Navigation/Navigation';
 import { navItems } from '../../../constants/navItems';
+import styles from './Header.module.css';
 
 export const Header = () => {
   return (
-    <header className="header">
-      <div className="container">
-        <div className="logo">
+    <header className={styles.header}>
+      <div className={styles.container}>
+        <div className={styles.logo}>
           {/* <img src={logo} alt="Fast Ray Gram" /> */}
-          <h1>Fast Ray Gram</h1>
+          <h2 className={styles.title}>Fast Ray Gram</h2>
         </div>
         <Navigation navItems={navItems} />
       </div>
