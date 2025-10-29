@@ -1,5 +1,5 @@
-import { Navigation } from './Navigation';
-import { navItems } from '../../constants/navItems';
+import { Navigation } from '../Navigation/Navigation';
+import { navItems } from '../../../constants/navItems';
 
 export const Header = () => {
   return (
