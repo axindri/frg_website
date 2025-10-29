@@ -7,15 +7,55 @@
     border-color: var(--color-button-border);
     padding: 0.5rem;
     color: var(--color-fg);
+    font-weight: 500;
+    letter-spacing: 0.3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 0.2s ease-in-out;
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
-.button:active {
-    background-color: var(--color-accent-active);
-}
+
 .button:hover {
     background-color: var(--color-accent-hover);
     cursor: pointer;
+    /* transform: translateY(-1px); */
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
 }
+
+.button:active {
+    background-color: var(--color-accent-active);
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
 .button:disabled {
     background-color: var(--color-button-disabled);
     cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+    opacity: 0.6;
+}
+
+/* Button variants */
+.button.secondary {
+    background-color: var(--color-button-secondary);
+    border-color: var(--color-button-secondary);
+}
+
+.button.secondary:hover {
+    background-color: var(--color-button-secondary-hover);
+    box-shadow: 0 4px 12px rgba(108, 117, 125, 0.3);
+}
+
+.button.danger {
+    background-color: var(--color-button-danger);
+    border-color: var(--color-button-danger);
+}
+
+.button.danger:hover {
+    background-color: var(--color-button-danger-hover);
+    box-shadow: 0 4px 12px rgba(220, 53, 69, 0.3);
 }

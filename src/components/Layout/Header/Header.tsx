@@ -1,11 +1,18 @@
 import { Navigation } from '../Navigation/Navigation';
 import { publicNavItems, privateNavItems } from '../../../constants/navItems';
-import { tokenStorage } from '../../../services/tokenStorageService';
+import { useAuthContext } from '../../../contexts/AuthContext';
 import styles from './Header.module.css';
 
 export const Header = () => {
-  const isAuthenticated = !!tokenStorage.getAccessToken();
-  const navItems = isAuthenticated ? privateNavItems : publicNavItems;
+  const { authState, isInitialized } = useAuthContext();
+  const isAuthenticated = authState.isAuthenticated;
+  const homeItem = publicNavItems.find((item) => item.path === '/');
+   
+  const navItems = !isInitialized 
+    ? publicNavItems 
+    : isAuthenticated
+      ? (homeItem ? [homeItem, ...privateNavItems] : privateNavItems)
+      : publicNavItems;
 
   return (
     <header className={styles.header}>

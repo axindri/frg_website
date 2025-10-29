@@ -23,6 +23,10 @@
   /* Buttons */
   --color-button-border: #007bff;
   --color-button-disabled: #a6a6a6;
+  --color-button-secondary: #6c757d;
+  --color-button-secondary-hover: #5a6268;
+  --color-button-danger: #dc3545;
+  --color-button-danger-hover: #c82333;
 
   
   /* Borders */
