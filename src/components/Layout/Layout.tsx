@@ -1,15 +1,12 @@
 import type { ReactNode } from 'react';
 import { Navigation } from './Navigation';
+import { navItems } from '../../constants/navItems';
 
 interface LayoutProps {
   children: ReactNode;
-  navItems: {
-    path: string;
-    label: string;
-  }[];
 }
 
-export const Layout = ({ children, navItems }: LayoutProps) => {
+export const Layout = ({ children }: LayoutProps) => {
   return (
     <div className="layout">
       <header className="navigation">
