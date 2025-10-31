@@ -1,40 +1,49 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import type { User, LoginCredentials, AuthState } from '../types/auth';
+import type { LoginCredentials, AuthState, AuthProfileResponse } from '../types/auth';
 import { AuthService } from '../services/authService';
 import { tokenStorage } from '../services/tokenStorageService';
-import toast from 'react-hot-toast';
 
 const defaultAuthState: AuthState = {
-    user: null,
     isAuthenticated: false,
     error: null
   };
 
+export interface AuthStateWithProfile extends AuthState {
+  profile?: AuthProfileResponse;
+}
+
 export const useAuth = () => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [authState, setAuthState] = useState<AuthState>(defaultAuthState);
+  const [authState, setAuthState] = useState<AuthStateWithProfile>(defaultAuthState);
   const [isInitialized, setIsInitialized] = useState<boolean>(false);
+  const isInitializedRef = useRef(false);
   const navigate = useNavigate();
 
-  // Check for existing token on component mount
   useEffect(() => {
+    if (isInitializedRef.current) return;
+    isInitializedRef.current = true;
+
     const initializeAuth = async () => {
+      console.log('Initializing authentication');
+      
       const token = tokenStorage.getAccessToken();
       if (token) {
         try {
-          const user = await AuthService.getProfile();
+          const profile = await AuthService.getProfile();
+
           setAuthState({
-            user,
             isAuthenticated: true,
-            error: null
+            error: null,
+            profile
           });
+
         } catch (error) {
-          // Token is invalid, clear it
-          tokenStorage.clearTokens();
+          console.error('Authentication error at initialization:', error);
           setAuthState(defaultAuthState);
         }
       }
+      
       setIsInitialized(true);
     };
 
@@ -46,22 +55,18 @@ export const useAuth = () => {
     
     try {
       await AuthService.login(credentials);
-      const currentUser: User = await AuthService.getProfile();
+      const profile = await AuthService.getProfile();
 
       setAuthState({
-        user: currentUser,
         isAuthenticated: true,
-        error: null
+        error: null,
+        profile
       });
       
       navigate('/');
-      toast.success('Successfully logged in!');
 
     } catch (error) {
-      console.error('Login error:', error);
-      toast.error('Login failed');
       setAuthState({
-        user: null,
         isAuthenticated: false,
         error: 'Invalid credentials'
       });
@@ -75,7 +80,6 @@ export const useAuth = () => {
   const handleLogout = async () => {
     await AuthService.logout();
     setAuthState(defaultAuthState);
-    toast.success('Successfully logged out!');
   };
 
   return {
