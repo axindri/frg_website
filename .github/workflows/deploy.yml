@@ -36,6 +36,8 @@ jobs:
           fi
 
       - name: Build
+        env:
+          VITE_AUTH_URL: ${{ secrets.VITE_AUTH_URL || 'http://localhost:8888/api/v1' }}
         run: npm run build -- --base="${{ steps.base.outputs.base }}"
 
       - name: Add SPA fallback
