@@ -12,7 +12,8 @@
   /* Colors */
   --color-not-active-fg: #b0b0b0;
   --color-fg: #e5e7eb;
-  --color-fg-label: #9f9f9f;
+  --color-fg-label: #b8b8b8;
+  --color-fg-copy-text: #797979;
   --color-bg: #000000;
   --color-content-bg: #1a1a1a;
   --color-container-bg: #292929;

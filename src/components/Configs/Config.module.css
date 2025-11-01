@@ -124,7 +124,7 @@
 .connectionUrl {
   font-size: 0.9rem;
   font-weight: 300;
-  color: var(--color-fg-label);
+  color: var(--color-fg-copy-text);
   flex: 1;
   overflow-x: auto;
   overflow-y: hidden;
