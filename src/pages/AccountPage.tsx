@@ -17,8 +17,6 @@ export const AccountPage = () => {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Профиль пользователя</h1>
-      
       <InfoBlock title="Основная информация">
         <InfoItem label="ID" value={profile.user.id} />
         <InfoItem label="Логин" value={profile.user.login} />
@@ -33,12 +31,9 @@ export const AccountPage = () => {
       </InfoBlock>
 
       <InfoBlock title="Активные сессии">
-        {profile.sessions.map((session) => (
+        {profile.sessions.map(session => (
           <div key={session.id} className={styles.session}>
-            <InfoItem 
-              label={session.session_name} 
-              value={session.is_active ? 'Активна' : 'Неактивна'}
-            />
+            <InfoItem label={session.session_name} value={session.is_active ? 'Активна' : 'Неактивна'} />
             <InfoItem label="IP" value={session.ip_address} />
             <InfoItem label="Устройство" value={session.device_info} />
             <InfoItem label="Последняя активность" value={formatDate(session.last_activity)} />

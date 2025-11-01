@@ -39,7 +39,6 @@ export const OrdersPage = () => {
 
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Заказы</h1>
       <div>
         {loading ? (
           <div>Загрузка заказов...</div>

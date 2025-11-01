@@ -2,7 +2,8 @@ import { useState } from 'react';
 import type { ApiConfig } from '../../types/api';
 import styles from './Config.module.css';
 import { DefaultButton } from '../Buttons/DefaultButton';
-
+import { CopyIcon } from '../Icons/NavIcons';
+import toast from 'react-hot-toast';
 interface ConfigProps {
   config: ApiConfig;
 }
@@ -24,6 +25,7 @@ export const Config = ({ config }: ConfigProps) => {
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(config.cached_data.connection_url);
+      toast.success('Скопировано в буфер обмена');
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
@@ -66,7 +68,7 @@ export const Config = ({ config }: ConfigProps) => {
           </div>
           <div className={styles.copyButtonContainer}>
             <DefaultButton variant="primary" onClick={handleCopy}>
-              {copied ? 'v' : '+'}
+              {copied ? <CopyIcon /> : <CopyIcon />}
             </DefaultButton>
           </div>
         </div>
