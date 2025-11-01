@@ -10,26 +10,24 @@ export class AuthService {
     console.log('Trying to login:', credentials.login);
     const response = await fetch(`${AUTH_URL}/auth/login`, {
       method: 'POST',
-      headers: { 
-        'Content-Type': 'application/json' 
+      headers: {
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify(credentials)
+      body: JSON.stringify(credentials),
     });
-    
+
     if (!response.ok) {
       tokenStorage.clearTokens();
       if (response.status === 401) {
         toast.error('Invalid credentials');
-      }
-      else if (response.status === 429) {
+      } else if (response.status === 429) {
         toast.error('Too many requests, please try again later');
-      }
-      else {
+      } else {
         toast.error(`Get profile failed with code: ${response.status}`);
       }
       throw new Error(`Get profile failed: ${response.status}`);
     }
-    
+
     const loginResponseData = await response.json();
     console.log('Login response:', loginResponseData);
 
@@ -44,21 +42,19 @@ export class AuthService {
     }
     const response = await fetch(`${AUTH_URL}/me/profile`, {
       method: 'GET',
-      headers: { 
+      headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${access}`
-      }
+        Authorization: `Bearer ${access}`,
+      },
     });
 
     if (!response.ok) {
-      tokenStorage.clearTokens();
+      // tokenStorage.clearTokens();
       if (response.status === 401) {
         toast.error('Unauthorized');
-      }
-      else if (response.status === 429) {
+      } else if (response.status === 429) {
         toast.error('Too many requests, please try again later');
-      }
-      else {
+      } else {
         toast.error(`Get profile failed with code: ${response.status}`);
       }
       throw new Error(`Get profile failed: ${response.status}`);
@@ -74,12 +70,12 @@ export class AuthService {
     if (access) {
       const response = await fetch(`${AUTH_URL}/auth/logout`, {
         method: 'POST',
-        headers: { 
+        headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${access}`
-        }
+          Authorization: `Bearer ${access}`,
+        },
       });
-  
+
       if (!response.ok) {
         throw new Error(`Logout failed: ${response.status}`);
       }

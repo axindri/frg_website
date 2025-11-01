@@ -46,19 +46,17 @@ export const OrdersPage = () => {
         ) : !profile ? (
           <div>Нет заказов</div>
         ) : (
-          <div>
+          <div className={styles.orders}>
             {profile.orders.map(order => (
-              <div key={order.id} className={styles.order}>
-                <InfoBlock title={`${order.id}`}>
-                  <InfoItem label="Статус" value={order.status} />
-                  <InfoItem label="ID пользователя" value={order.user_id} />
-                  <InfoItem label="ID конфигурации" value={order.config_id} />
-                  <InfoItem label="Цена" value={order.price} />
-                  <InfoItem label="Валюта" value={order.currency} />
-                  <InfoItem label="Данные" value={order.data} />
-                  <InfoItem label="Обновлено" value={order._updated_dttm} />
-                </InfoBlock>
-              </div>
+              <InfoBlock title={`${order.id}`}>
+                <InfoItem label="Статус" value={order.status} />
+                <InfoItem label="ID пользователя" value={order.user_id} />
+                <InfoItem label="ID конфигурации" value={order.config_id} />
+                <InfoItem label="Цена" value={order.price} />
+                <InfoItem label="Валюта" value={order.currency} />
+                <InfoItem label="Данные" value={order.data} />
+                <InfoItem label="Обновлено" value={order._updated_dttm} />
+              </InfoBlock>
             ))}
           </div>
         )}
