@@ -1,14 +1,12 @@
 import styles from './Order.module.css';
 import type { ApiOrder } from '../../types/api';
 import toast from 'react-hot-toast';
-import { useState } from 'react';
 
 interface OrderProps {
   order: ApiOrder;
 }
 
 export const Order = ({ order }: OrderProps) => {
-  const [copied, setCopied] = useState(false);
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString('ru-RU', {
       day: '2-digit',
@@ -22,8 +20,6 @@ export const Order = ({ order }: OrderProps) => {
     try {
       await navigator.clipboard.writeText(order.id);
       toast.success('Скопировано в буфер обмена');
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
     } catch (err) {
       console.error('Failed to copy:', err);
     }

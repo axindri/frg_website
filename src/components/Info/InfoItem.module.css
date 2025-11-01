@@ -1,17 +1,19 @@
 .container {
-    display: flex;
-    flex-direction: row;
-    gap: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
 }
 
 .label {
-    font-size: 1rem;
-    font-weight: 700;
-    color: var(--color-fg-label);
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-fg-label);
 }
 
 .value {
-    font-size: 1rem;
-    font-weight: 300;
-    color: var(--color-fg);
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: var(--color-fg);
 }
