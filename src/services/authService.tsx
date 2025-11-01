@@ -1,4 +1,4 @@
-import type { AuthProfileResponse, LoginCredentials, LoginResponse } from '../types/auth';
+import type { ApiSession, AuthProfileResponse, LoginCredentials, LoginResponse } from '../types/auth';
 import { tokenStorage } from './tokenStorageService';
 import { API_CONFIG } from '../config/api';
 import toast from 'react-hot-toast';
@@ -62,6 +62,23 @@ export class AuthService {
 
     const responseData = await response.json();
     console.log('Profile response:', responseData);
+    return responseData;
+  }
+
+  static async getSessions(): Promise<ApiSession[]> {
+    const access = tokenStorage.getAccessToken();
+    if (!access) {
+      throw new Error('No access token found in local storage');
+    }
+    const response = await fetch(`${AUTH_URL}/me/sessions`, {
+      method: 'GET',
+    });
+    if (!response.ok) {
+      throw new Error(`Get sessions failed: ${response.status}`);
+    }
+
+    const responseData = await response.json();
+    console.log('Sessions response:', responseData);
     return responseData;
   }
 
