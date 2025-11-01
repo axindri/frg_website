@@ -28,18 +28,18 @@ export const AppRoutes = () => (
       }
     />
     <Route
-      path="/promo"
-      element={
-        <RequireAuth>
-          <PromoPage />
-        </RequireAuth>
-      }
-    />
-    <Route
       path="/orders"
       element={
         <RequireAuth>
           <OrdersPage />
+        </RequireAuth>
+      }
+    />
+    <Route
+      path="/promo"
+      element={
+        <RequireAuth>
+          <PromoPage />
         </RequireAuth>
       }
     />

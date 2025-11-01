@@ -7,8 +7,8 @@ export const publicNavItems = [
 
 export const privateNavItems = [
   { path: '/configs', label: 'Конфиги', icon: ConfigsIcon },
-  { path: '/promo', label: 'Промо', icon: PromoIcon },
   { path: '/orders', label: 'Заказы', icon: OrdersIcon },
+  { path: '/promo', label: 'Промо', icon: PromoIcon },
   { path: '/account', label: 'Аккаунт', icon: AccountIcon },
 ];
 

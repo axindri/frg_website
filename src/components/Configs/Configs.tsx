@@ -18,16 +18,13 @@ export const Configs = () => {
     const fetchProfile = async () => {
       setLoading(true);
       try {
-        const id = toast.loading('Загрузка...');
         const data = await ApiService.get_profile();
         setProfile(data);
 
         if (!data) {
           toast.success('Конфигурации не найдены');
         }
-        toast.dismiss(id);
       } catch (error) {
-        console.error('Error fetching profile:', error);
         toast.error(`Загрузка не удалась: ${error}`);
       } finally {
         setLoading(false);
