@@ -34,7 +34,7 @@ export const Config = ({ config }: ConfigProps) => {
   };
 
   return (
-    <div className={styles.config}>
+    <div className={styles.container}>
       <div className={styles.header}>
         <div className={styles.titleContainer}>
           <h3 className={styles.title}>{config.type}</h3>

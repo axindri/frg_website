@@ -30,11 +30,12 @@
 }
 
 .title {
-  font-size: 1.1rem;
+  font-size: 1rem;
   font-weight: 700;
   text-transform: uppercase;
   color: var(--color-fg);
   margin: 0;
+  cursor: pointer;
 }
 
 .status {
@@ -48,33 +49,19 @@
   padding: 0.1rem 0.4rem;
 }
 
-.status.active {
+.status.new {
+  background-color: rgba(178, 159, 12, 0.671);
+  border: 1px solid rgb(178, 159, 12);
+}
+
+.status.paid {
   background-color: rgba(12, 178, 12, 0.671);
   border: 1px solid rgb(12, 178, 12);
 }
 
-.status.inactive {
-  background-color: rgba(178, 12, 12, 0.671);
-  border: 1px solid rgb(178, 12, 12);
-}
-
-.priceContainer {
-  display: flex;
-  align-items: baseline;
-  gap: 0.2rem;
-}
-
-.price {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: var(--color-accent);
-}
-
-.currency {
-  font-size: 0.9rem;
-  font-weight: 400;
-  color: var(--color-fg-label);
-  text-transform: uppercase;
+.status.closed {
+  background-color: rgba(178, 178, 178, 0.671);
+  border: 1px solid rgb(178, 178, 178);
 }
 
 .content {
@@ -109,36 +96,9 @@
   word-break: break-all;
 }
 
-.connectionRow {
-  display: flex;
-  align-items: flex-start;
-  flex-direction: row;
-  min-width: 0;
-  border: 1px solid var(--color-border);
-  border-radius: var(--border-radius);
-  padding: 0.2rem 0.4rem;
-  margin-left: 0.5rem;
-  background-color: var(--color-container-secondary-bg);
-}
-
-.connectionUrl {
+.currency {
   font-size: 0.9rem;
-  font-weight: 300;
-  color: var(--color-fg-copy-text);
-  flex: 1;
-  overflow-x: auto;
-  overflow-y: hidden;
-  white-space: nowrap;
-  min-width: 0;
-}
-
-.connectionUrl::-webkit-scrollbar {
-  display: none;
-}
-
-.copyButtonContainer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 1.5rem;
+  font-weight: 400;
+  color: var(--color-fg-label);
+  text-transform: uppercase;
 }

@@ -1,0 +1,52 @@
+import styles from './Orders.module.css';
+import { Order } from './Order';
+import { useEffect, useRef, useState } from 'react';
+import { ApiService } from '../../services/apiService';
+import toast from 'react-hot-toast';
+import type { ApiProfileResponse } from '../../types/api';
+import { Loader } from '../Loader/Loader';
+
+export const Orders = () => {
+  const [loading, setLoading] = useState(false);
+  const [profile, setProfile] = useState<ApiProfileResponse | null>(null);
+  const hasFetched = useRef(false);
+
+  useEffect(() => {
+    if (hasFetched.current) return;
+    hasFetched.current = true;
+
+    const fetchProfile = async () => {
+      setLoading(true);
+      try {
+        const data = await ApiService.get_profile();
+        setProfile(data);
+
+        if (!data) {
+          toast.success('Конфигурации не найдены');
+        }
+      } catch (error) {
+        toast.error(`Загрузка не удалась: ${error}`);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProfile();
+  }, []);
+
+  return (
+    <>
+      {loading ? (
+        <Loader />
+      ) : !profile ? (
+        <div>Профиль пользователя не найден</div>
+      ) : (
+        <div className={styles.container}>
+          {profile.orders.map(order => (
+            <Order key={order.id} order={order} />
+          ))}
+        </div>
+      )}
+    </>
+  );
+};
