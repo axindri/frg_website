@@ -18,7 +18,11 @@ export class ApiService {
       },
     });
     if (!response.ok) {
-      throw new Error('Failed to fetch profile');
+      if (response.status === 429) {
+        throw new Error('Too many requests, please try again later');
+      } else {
+        throw new Error(`Failed to fetch profile with code: ${response.status}`);
+      }
     }
     const responseData = await response.json();
     console.log('API Service. profile response:', responseData);

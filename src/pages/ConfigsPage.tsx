@@ -4,6 +4,7 @@ import type { ApiProfileResponse } from '../types/api';
 import { InfoBlock } from '../components/Info/InfoBlock';
 import { InfoItem } from '../components/Info/InfoItem';
 import styles from './ConfigsPage.module.css';
+import toast from 'react-hot-toast';
 
 export const ConfigsPage = () => {
   const [loading, setLoading] = useState(false);
@@ -17,10 +18,17 @@ export const ConfigsPage = () => {
     const fetchProfile = async () => {
       setLoading(true);
       try {
+        const id = toast.loading('Loading configs...');
         const data = await ApiService.get_profile();
         setProfile(data);
+
+        if (!data) {
+          toast.success('No configs found');
+        }
+        toast.dismiss(id);
       } catch (error) {
         console.error('Error fetching profile:', error);
+        toast.error(`Error fetching configs ${error}`);
       } finally {
         setLoading(false);
       }
@@ -44,7 +52,7 @@ export const ConfigsPage = () => {
         {loading ? (
           <div>Загрузка конфигураций...</div>
         ) : !profile ? (
-          <div>Нет конфигураций</div>
+          <div></div>
         ) : (
           <div>
             {profile.configs.map(config => (
