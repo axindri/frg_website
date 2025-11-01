@@ -16,7 +16,7 @@
   margin: 0;
 }
 
-.config {
+.order {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;

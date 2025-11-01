@@ -42,24 +42,27 @@ export const ConfigsPage = () => {
       </button> */}
       <div>
         {loading ? (
-          <div>Loading...</div>
+          <div>Загрузка конфигураций...</div>
         ) : !profile ? (
-          <div>No profile data</div>
+          <div>Нет конфигураций</div>
         ) : (
           <div>
             {profile.configs.map(config => (
-              <div key={config.id}>
-                <InfoBlock title="Configs">
+              <div key={config.id} className={styles.config}>
+                <InfoBlock title={`${config.type}`.toUpperCase()}>
                   <InfoItem label="ID" value={config.id} />
-                  <InfoItem label="Type" value={config.type} />
-                  <InfoItem label="Price" value={config.price} />
-                  <InfoItem label="Currency" value={config.currency} />
-                  <InfoItem label="User ID" value={config.user_id} />
-                  <InfoItem label="Service User ID" value={config.service_user_id} />
-                  <InfoItem label="Cached Data" value={config.cached_data} />
-                  <InfoItem label="Valid From" value={config.valid_from_dttm} />
-                  <InfoItem label="Valid To" value={config.valid_to_dttm} />
-                  <InfoItem label="Updated" value={config._updated_dttm} />
+                  <InfoItem label="Цена" value={config.price} />
+                  <InfoItem label="Валюта" value={config.currency} />
+                  <InfoItem label="ID пользователя" value={config.user_id} />
+                  <InfoItem label="ID сервисного пользователя" value={config.service_user_id} />
+                  <InfoItem label="Email" value={config.cached_data.email} />
+                  <InfoItem label="Ограничение IP" value={config.cached_data.limit_ip} />
+                  <InfoItem label="Объем" value={config.cached_data.total_gb} />
+                  <InfoItem label="URL соединения" value={config.cached_data.connection_url} />
+                  <InfoItem label="URL подписки" value={config.cached_data.subscription_url} />
+                  <InfoItem label="Действительно с" value={config.valid_from_dttm} />
+                  <InfoItem label="Действительно до" value={config.valid_to_dttm} />
+                  <InfoItem label="Обновлено" value={config._updated_dttm} />
                 </InfoBlock>
               </div>
             ))}
