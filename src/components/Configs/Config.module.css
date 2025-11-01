@@ -1,0 +1,133 @@
+.config {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  background-color: var(--color-container-bg);
+  transition: all 0.3s ease-in-out;
+  overflow: hidden;
+}
+
+.config:hover {
+  box-shadow: 0 0 0.125rem 0 var(--color-container-glow);
+  transform: translateY(-0.125rem);
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--color-border);
+  padding: 0.75rem 0.5rem;
+}
+
+.titleContainer {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+
+.title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--color-fg);
+  margin: 0;
+}
+
+.status {
+  font-size: 0.8rem;
+  font-weight: 400;
+  color: var(--color-fg);
+  text-transform: uppercase;
+  background-color: rgba(12, 178, 12, 0.671);
+  border: 1px solid rgb(12, 178, 12);
+  border-radius: var(--border-radius);
+  padding: 0.1rem 0.4rem;
+}
+
+.priceContainer {
+  display: flex;
+  align-items: baseline;
+  gap: 0.2rem;
+}
+
+.price {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-accent);
+}
+
+.currency {
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--color-fg-label);
+  text-transform: uppercase;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  gap: 0.2rem;
+}
+
+.item {
+  display: flex;
+  flex-direction: row;
+  gap: 0.2rem;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 1.5rem;
+}
+
+.label {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: var(--color-fg-label);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.value {
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: var(--color-fg);
+  word-break: break-all;
+}
+
+.connectionRow {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: row;
+  min-width: 0;
+  border: 1px solid var(--color-border);
+  border-radius: var(--border-radius);
+  padding: 0.2rem 0.4rem;
+  margin-left: 0.5rem;
+  background-color: var(--color-container-secondary-bg);
+}
+
+.connectionUrl {
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: var(--color-fg-label);
+  flex: 1;
+  overflow-x: auto;
+  overflow-y: hidden;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+.connectionUrl::-webkit-scrollbar {
+  display: none;
+}
+
+.copyButtonContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 1.5rem;
+}
