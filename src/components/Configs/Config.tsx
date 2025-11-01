@@ -36,7 +36,9 @@ export const Config = ({ config }: ConfigProps) => {
       <div className={styles.header}>
         <div className={styles.titleContainer}>
           <h3 className={styles.title}>{config.type}</h3>
-          <div className={styles.status}>{config.valid_to_dttm > new Date().toISOString() ? 'Активна' : 'Неактивна'}</div>
+          <div className={`${styles.status} ${config.valid_to_dttm > new Date().toISOString() ? styles.active : styles.inactive}`}>
+            {config.valid_to_dttm > new Date().toISOString() ? 'Активна' : 'Неактивна'}
+          </div>
         </div>
         <div className={styles.priceContainer}>
           <span className={styles.price}>{config.price}</span>
