@@ -10,9 +10,9 @@
 
 :root {
   /* Colors */
-  --color-not-active-fg: #c8c8c8;
+  --color-not-active-fg: #b0b0b0;
   --color-fg: #e5e7eb;
-  --color-fg-label: #a6a6a6;
+  --color-fg-label: #9f9f9f;
   --color-bg: #000000;
   --color-content-bg: #1a1a1a;
   --color-container-bg: #292929;
@@ -27,7 +27,7 @@
   --color-border: #3f3f3f;
 
   /* Buttons */
-  --color-button-border: #007bff;
+  --color-button-border: #007bffd7;
   --color-button-disabled: #a6a6a6;
   --color-button-secondary: #6c757d;
   --color-button-secondary-hover: #5a6268;
