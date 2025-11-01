@@ -18,17 +18,17 @@ export const ConfigsPage = () => {
     const fetchProfile = async () => {
       setLoading(true);
       try {
-        const id = toast.loading('Loading configs...');
+        const id = toast.loading('Загрузка конфигураций...');
         const data = await ApiService.get_profile();
         setProfile(data);
 
         if (!data) {
-          toast.success('No configs found');
+          toast.success('Конфигурации не найдены');
         }
         toast.dismiss(id);
       } catch (error) {
         console.error('Error fetching profile:', error);
-        toast.error(`Error fetching configs ${error}`);
+        toast.error(`Загрузка конфигураций не удалась: ${error}`);
       } finally {
         setLoading(false);
       }
@@ -54,25 +54,23 @@ export const ConfigsPage = () => {
         ) : !profile ? (
           <div></div>
         ) : (
-          <div>
+          <div className={styles.configs}>
             {profile.configs.map(config => (
-              <div key={config.id} className={styles.config}>
-                <InfoBlock title={`${config.type}`.toUpperCase()}>
-                  <InfoItem label="ID" value={config.id} />
-                  <InfoItem label="Цена" value={config.price} />
-                  <InfoItem label="Валюта" value={config.currency} />
-                  <InfoItem label="ID пользователя" value={config.user_id} />
-                  <InfoItem label="ID сервисного пользователя" value={config.service_user_id} />
-                  <InfoItem label="Email" value={config.cached_data.email} />
-                  <InfoItem label="Ограничение IP" value={config.cached_data.limit_ip} />
-                  <InfoItem label="Объем" value={config.cached_data.total_gb} />
-                  <InfoItem label="URL соединения" value={config.cached_data.connection_url} />
-                  <InfoItem label="URL подписки" value={config.cached_data.subscription_url} />
-                  <InfoItem label="Действительно с" value={config.valid_from_dttm} />
-                  <InfoItem label="Действительно до" value={config.valid_to_dttm} />
-                  <InfoItem label="Обновлено" value={config._updated_dttm} />
-                </InfoBlock>
-              </div>
+              <InfoBlock title={`${config.type}`.toUpperCase()}>
+                <InfoItem label="ID" value={config.id} />
+                <InfoItem label="Цена" value={config.price} />
+                <InfoItem label="Валюта" value={config.currency} />
+                <InfoItem label="ID пользователя" value={config.user_id} />
+                <InfoItem label="ID сервисного пользователя" value={config.service_user_id} />
+                <InfoItem label="Email" value={config.cached_data.email} />
+                <InfoItem label="Ограничение IP" value={config.cached_data.limit_ip} />
+                <InfoItem label="Объем" value={config.cached_data.total_gb} />
+                <InfoItem label="URL соединения" value={config.cached_data.connection_url} />
+                <InfoItem label="URL подписки" value={config.cached_data.subscription_url} />
+                <InfoItem label="Действительно с" value={config.valid_from_dttm} />
+                <InfoItem label="Действительно до" value={config.valid_to_dttm} />
+                <InfoItem label="Обновлено" value={config._updated_dttm} />
+              </InfoBlock>
             ))}
           </div>
         )}

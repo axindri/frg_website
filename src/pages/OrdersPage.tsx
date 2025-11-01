@@ -18,18 +18,17 @@ export const OrdersPage = () => {
     const fetchProfile = async () => {
       setLoading(true);
       try {
-        const id = toast.loading('Loading configs...');
+        const id = toast.loading('Загрузка заказов...');
         const data = await ApiService.get_profile();
         setProfile(data);
 
         if (!data) {
-          toast.success('No configs found');
+          toast.success('Заказы не найдены');
         }
         toast.dismiss(id);
       } catch (error) {
         console.error('Error fetching profile:', error);
-        toast.error('Error fetching configs');
-        throw new Error('Error fetching configs');
+        toast.error(`Загрузка заказов не удалась: ${error}`);
       } finally {
         setLoading(false);
       }
