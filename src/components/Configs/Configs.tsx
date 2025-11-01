@@ -4,6 +4,7 @@ import type { ApiProfileResponse } from '../../types/api';
 import toast from 'react-hot-toast';
 import { ApiService } from '../../services/apiService';
 import styles from './Configs.module.css';
+import { Loader } from '../Loader/Loader';
 
 export const Configs = () => {
   const [loading, setLoading] = useState(false);
@@ -17,7 +18,7 @@ export const Configs = () => {
     const fetchProfile = async () => {
       setLoading(true);
       try {
-        const id = toast.loading('Загрузка конфигураций...');
+        const id = toast.loading('Загрузка...');
         const data = await ApiService.get_profile();
         setProfile(data);
 
@@ -27,7 +28,7 @@ export const Configs = () => {
         toast.dismiss(id);
       } catch (error) {
         console.error('Error fetching profile:', error);
-        toast.error(`Загрузка конфигураций не удалась: ${error}`);
+        toast.error(`Загрузка не удалась: ${error}`);
       } finally {
         setLoading(false);
       }
@@ -39,9 +40,9 @@ export const Configs = () => {
   return (
     <>
       {loading ? (
-        <div>Загрузка конфигураций...</div>
+        <Loader />
       ) : !profile ? (
-        <div></div>
+        <div>Профиль пользователя не найден</div>
       ) : (
         <div className={styles.container}>
           {profile.configs.map(config => (
