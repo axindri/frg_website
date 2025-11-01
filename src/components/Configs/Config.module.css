@@ -10,6 +10,7 @@
 
 .config:hover {
   box-shadow: 0 0 0.125rem 0 var(--color-container-glow);
+  border: 1px solid var(--color-container-glow);
   transform: translateY(-0.125rem);
 }
 
