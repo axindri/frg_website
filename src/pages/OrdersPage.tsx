@@ -54,7 +54,8 @@ export const OrdersPage = () => {
                 <InfoItem label="ID конфигурации" value={order.config_id} />
                 <InfoItem label="Цена" value={order.price} />
                 <InfoItem label="Валюта" value={order.currency} />
-                <InfoItem label="Данные" value={order.data} />
+                <InfoItem label="Ограничение IP" value={order.data.limit_ip} />
+                <InfoItem label="Объем" value={order.data.total_gb} />
                 <InfoItem label="Обновлено" value={order._updated_dttm} />
               </InfoBlock>
             ))}
